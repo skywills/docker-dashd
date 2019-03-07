@@ -2,7 +2,7 @@
 
 set -euo pipefail
 
-COIN_DIR=/root/.${COINNAME}
+COIN_DIR=/root/.${COINNAME}core
 COIN_CONF=${COIN_DIR}/${COINNAME}.conf
 DAEMON=${COINNAME}d
 

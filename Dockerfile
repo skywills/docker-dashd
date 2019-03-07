@@ -22,7 +22,7 @@ RUN apk update \
   && rm -rf /glibc-bin-${GLIBC_VERSION}.apk \
   && wget $DOWNLOAD_URL \
   && tar xzvf /${FILENAME} \
-  && mkdir /root/.${COINNAME} \
+  && mkdir /root/.${COINNAME}core \
   && mv /${COINNAME}core-${VERSION}/bin/* /usr/local/bin/ \
   && rm -rf /${COINNAME}core-${VERSION}/ \
   && rm -rf /${FILENAME} \
