@@ -1,12 +1,12 @@
 FROM alpine
 LABEL MAINTAINER="James O'Beirne <james@chaincode.com>"
 
-ARG VERSION=0.13.1
+ARG VERSION=0.14.0.3
 ARG GLIBC_VERSION=2.28-r0
 
 ENV COINNAME dash
-ENV FILENAME ${COINNAME}core-${VERSION}.0-x86_64-linux-gnu.tar.gz
-ENV DOWNLOAD_URL https://github.com/dashpay/dash/releases/download/v${VERSION}.0/${FILENAME}
+ENV FILENAME ${COINNAME}core-${VERSION}-x86_64-linux-gnu.tar.gz
+ENV DOWNLOAD_URL https://github.com/dashpay/dash/releases/download/v${VERSION}/${FILENAME}
 
 # Some of this was unabashadly yanked from
 # https://github.com/szyhf/DIDockerfiles/blob/master/bitcoin/alpine/Dockerfile
@@ -21,7 +21,8 @@ RUN apk update \
   && rm -rf /glibc-${GLIBC_VERSION}.apk \
   && rm -rf /glibc-bin-${GLIBC_VERSION}.apk \
   && wget $DOWNLOAD_URL \
-  && tar xzvf /${FILENAME} \
+  && mkdir ${COINNAME}core-${VERSION} \
+  && tar xzvf /${FILENAME} -C ${COINNAME}core-${VERSION} --strip-components 1 \
   && mkdir /root/.${COINNAME}core \
   && mv /${COINNAME}core-${VERSION}/bin/* /usr/local/bin/ \
   && rm -rf /${COINNAME}core-${VERSION}/ \
